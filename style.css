@@ -1,0 +1,28 @@
+body {
+    font-family: 'Righteous', sans-serif;
+}
+
+.card {
+    height: 100px;
+    width: 100px;
+}
+
+.card_front,
+.card_back {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.288);
+}
+
+.card_front {
+    background-color: rgb(123, 102, 143);
+}
+
+.card_back {
+    background-color: rgb(122, 201, 233);
+    font-size: 25px;
+}
