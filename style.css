@@ -5,6 +5,11 @@
 
 body {
     font-family: 'Righteous', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: rgb(214, 214, 214);
 }
 
 .card {
@@ -62,4 +67,11 @@ body {
     margin-top: 15px;
     border-style: none;
     border-radius: 8px;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 700px;
 }
