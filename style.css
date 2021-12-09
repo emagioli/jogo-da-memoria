@@ -38,13 +38,17 @@ body {
 }
 
 .card_front {
-    background-color: rgb(123, 102, 143);
+    background-color: rgba(132, 130, 255, 0.753);
     transform: rotateY(180deg);
 }
 
 .card_back {
-    background-color: rgb(122, 201, 233);
+    background-color: rgb(240, 49, 49);
     font-size: 25px;
+}
+
+#backIcon {
+    width: 55px;
 }
 
 #gameOver {
