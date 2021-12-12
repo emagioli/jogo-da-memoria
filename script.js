@@ -14,7 +14,27 @@ var pokemons = [
     "squirtle"
 ];
 
-createCards(pokemons);
+let cards = null;
+
+startGame();
+
+function startGame() {
+    cards = createCards(pokemons);
+    shuffleCards(cards);
+    console.log(cards);
+}
+
+function shuffleCards(cards) {
+    currentIndex = cards.length;
+    randomIndex = 0;
+
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [[cards[randomIndex]], [cards[currentIndex]]] = [[cards[currentIndex]], [cards[randomIndex]]];
+    }
+}
 
 function createCards(pokemons) {
     let cards = [];
@@ -23,7 +43,7 @@ function createCards(pokemons) {
         cards.push(createPair(pokemon));
     }
 
-    console.log(cards.flatMap(pair => pair));
+    return cards.flatMap(pair => pair);
 }
 
 function createPair(pokemon) {
