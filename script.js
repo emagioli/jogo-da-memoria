@@ -1,5 +1,8 @@
+const CARD = "card";
 const FRONT = "card_front";
 const BACK = "card_back";
+const ICON = "icon";
+const BACK_ICON = "backIcon";
 
 var pokemons = [
     "abra",
@@ -21,7 +24,7 @@ startGame();
 function startGame() {
     cards = createCards(pokemons);
     shuffleCards(cards);
-    console.log(cards);
+    initializeCards(cards);
 }
 
 function shuffleCards(cards) {
@@ -34,6 +37,47 @@ function shuffleCards(cards) {
 
         [[cards[randomIndex]], [cards[currentIndex]]] = [[cards[currentIndex]], [cards[randomIndex]]];
     }
+}
+
+function initializeCards(cards){
+    let gameBoardElement = document.getElementById("gameBoard");
+
+    cards.forEach(card => {
+        let cardElement = document.createElement("div");
+        cardElement.id = card.id;
+        cardElement.classList.add(CARD);
+        cardElement.dataset.icon = card.icon;
+
+        createCardContent(card, cardElement);
+        cardElement.addEventListener("click", flipCard);
+
+        gameBoardElement.appendChild(cardElement);
+    });
+}
+
+function createCardContent(card, element){
+    createCardFace(FRONT, card, element);
+    createCardFace(BACK, card, element);
+}
+
+function createCardFace(face, card, element){
+    let cardElementFace = document.createElement("div");
+    cardElementFace.classList.add(face);
+
+    let iconElement = document.createElement("img");
+    
+    if (face == FRONT) {
+        iconElement.classList.add(ICON);
+        iconElement.src = `./images/pokemon/${card.icon}.png`;
+        
+    } else {
+        iconElement.classList.add(BACK_ICON);
+        iconElement.src = "./images/pokemon/pokeball.png";
+    }
+
+    cardElementFace.appendChild(iconElement);
+
+    element.appendChild(cardElementFace);
 }
 
 function createCards(pokemons) {
@@ -63,11 +107,11 @@ function generateId(pokemon) {
 }
 
 
-function flipCard(card) {
-    if (!isFlipped(card)) {
-        card.classList.add("flip");
+function flipCard() {
+    if (!isFlipped(this)) {
+        this.classList.add("flip");
     } else {
-        card.classList.remove("flip");
+        this.classList.remove("flip");
     }
 
 }
