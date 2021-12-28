@@ -4,40 +4,14 @@ const BACK = "card_back";
 const ICON = "icon";
 const BACK_ICON = "backIcon";
 
-var pokemons = [
-    "abra",
-    "bulbasaur",
-    "charmander",
-    "ditto",
-    "gengar",
-    "mew",
-    "mewtwo",
-    "pikachu",
-    "snorlax",
-    "squirtle"
-];
-
-let cards = null;
-
 startGame();
 
 function startGame() {
-    cards = createCards(pokemons);
-    shuffleCards(cards);
-    initializeCards(cards);
+    game.createCards();
+    initializeCards(game.cards);
 }
 
-function shuffleCards(cards) {
-    currentIndex = cards.length;
-    randomIndex = 0;
 
-    while (currentIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        [[cards[randomIndex]], [cards[currentIndex]]] = [[cards[currentIndex]], [cards[randomIndex]]];
-    }
-}
 
 function initializeCards(cards){
     let gameBoardElement = document.getElementById("gameBoard");
@@ -79,33 +53,6 @@ function createCardFace(face, card, element){
 
     element.appendChild(cardElementFace);
 }
-
-function createCards(pokemons) {
-    let cards = [];
-
-    for (let pokemon of pokemons) {
-        cards.push(createPair(pokemon));
-    }
-
-    return cards.flatMap(pair => pair);
-}
-
-function createPair(pokemon) {
-    return [{
-        id: generateId(pokemon),
-        icon: pokemon,
-        flipped: false
-    }, {
-        id: generateId(pokemon),
-        icon: pokemon,
-        flipped: false
-    }];
-}
-
-function generateId(pokemon) {
-    return pokemon + parseInt(Math.random() * 1000);
-}
-
 
 function flipCard() {
     if (!isFlipped(this)) {
