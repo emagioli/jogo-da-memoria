@@ -1,4 +1,4 @@
-# jogo-da-memoria
+# pokemon-memory-game
 
 A pokemon-themed memory (card matching) game!
 
