@@ -25,7 +25,7 @@ let game = {
         if (this.firstCard === null) {
             this.firstCard = card;
             return true;
-        } else{
+        } else {
             this.secondCard = card;
             this.isLocked = true;
 
@@ -36,7 +36,7 @@ let game = {
         return this.cards.filter(card => card.id == id)[0];
     },
     checkPair: function () {
-        if(this.firstCard === null || this.secondCard === null){
+        if (this.firstCard === null || this.secondCard === null) {
             return false;
         }
         return this.firstCard.icon === this.secondCard.icon;
@@ -80,5 +80,8 @@ let game = {
 
             [[this.cards[randomIndex]], [this.cards[currentIndex]]] = [[this.cards[currentIndex]], [this.cards[randomIndex]]];
         }
+    },
+    checkGameOver: function () {
+        return this.cards.filter(card => !card.flipped) == 0;
     }
 }

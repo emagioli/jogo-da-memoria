@@ -8,8 +8,14 @@ const FLIP = "flip";
 startGame();
 
 function startGame() {
+    clearBoard();
     game.createCards();
     initializeCards(game.cards);
+}
+
+function clearBoard() {
+    let gameBoardElement = document.getElementById("gameBoard");
+    gameBoardElement.innerHTML = "";
 }
 
 function initializeCards(cards) {
@@ -60,7 +66,11 @@ function flipCard() {
 
         if (game.checkPair()) {
             game.clearPair();
-        } else if(game.secondCard !== null){
+            if(game.checkGameOver()){
+                displayGameOverScreen();
+            }
+            
+        } else if (game.secondCard !== null) {
             setTimeout(() => {
                 let firstCardElement = document.getElementById(game.firstCard.id);
                 let secondCardElement = document.getElementById(game.secondCard.id);
@@ -75,7 +85,18 @@ function flipCard() {
 
 }
 
+function displayGameOverScreen(){
+    let gameOverScreen = document.getElementById("gameOver");
+    gameOverScreen.style.display = "flex";
+}
+
 function unflipCard(cardElement) {
     game.getCardById(cardElement.id).flipped = false;
     cardElement.classList.remove(FLIP);
+}
+
+function restart() {
+    startGame();
+    let gameOverScreen = document.getElementById("gameOver");
+    gameOverScreen.style.display = "none";
 }
