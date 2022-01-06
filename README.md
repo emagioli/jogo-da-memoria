@@ -2,4 +2,4 @@
 
 A pokemon-themed memory (card matching) game!
 
-Try it yourself : 
+Try it yourself : https://emagioli.github.io/jogo-da-memoria/
